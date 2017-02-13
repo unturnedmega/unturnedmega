@@ -134,7 +134,7 @@ function loadMap(mapName) {
 }
 
 $(".maplink").each(function() {
-	$(this).css("background-image", "url('/Images/"+$(this).data( "name" )+".jpg')");
+	$(this).css("background-image", "url('../Images/"+$(this).data( "name" )+".jpg')");
 });
 
 $(".maplink").click(function() {
