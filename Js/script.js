@@ -1,8 +1,19 @@
 var mapData;
 var map;
 
-function loadMap(mapName) {
+function loadMap(mapName, firstTime) {
 	if (mapName == "" || /\W/.test(mapName)) mapName = "PEI";
+	
+	var l = "Click";
+	if(firstTime) {
+		l = "Load";
+	}
+	ga('send', {
+	  hitType: 'event',
+	  eventCategory: 'Maps',
+	  eventAction: mapName,
+	  eventLabel: l
+	});
 
 	$.getJSON("Data/" + mapName + ".json", function(data) {
 		mapData = data;
@@ -138,7 +149,7 @@ $(".maplink").each(function() {
 });
 
 $(".maplink").click(function() {
-	loadMap($(this).data( "name" ));
+	loadMap($(this).data( "name" ), true);
 });
 
-loadMap(window.location.hash.substr(1));
+loadMap(window.location.hash.substr(1), false);
