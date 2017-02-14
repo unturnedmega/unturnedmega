@@ -1,6 +1,6 @@
 ## UNTURNEDMEGA
 
-This is the repository for the Unturned map service UNTURNEDMEGA found at [https://unturnedme.ga/](unturnedme.ga).
+This is the repository for the Unturned map service UNTURNEDMEGA found at [unturnedme.ga](https://unturnedme.ga).
 
 ## About
 
