@@ -130,7 +130,7 @@ function loadMap(mapName, firstTime) {
 	        "Places": mapMarkers,
 	        "Zombie Zones": zombieZones,
 	        "Item Spawns": heat,
-	        "Aidrop Locations": airdrops
+	        "Airdrop Locations": airdrops
 	    };
 	    L.control.layers({}, overlayMaps).addTo(map);
 		
