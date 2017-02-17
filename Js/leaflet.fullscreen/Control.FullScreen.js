@@ -50,7 +50,7 @@ L.Control.FullScreen = L.Control.extend({
 		map._exitFired = false;
 		if (map._isFullscreen) {
 			if (fullScreenApi.supportsFullScreen && !this.options.forcePseudoFullscreen) {
-				fullScreenApi.cancelFullScreen(map._container);
+				fullScreenApi.cancelFullScreen(document.getElementsByTagName("BODY")[0]);
 			} else {
 				L.DomUtil.removeClass(map._container, 'leaflet-pseudo-fullscreen');
 			}
@@ -58,10 +58,9 @@ L.Control.FullScreen = L.Control.extend({
 			map.fire('exitFullscreen');
 			map._exitFired = true;
 			map._isFullscreen = false;
-		}
-		else {
+		} else {
 			if (fullScreenApi.supportsFullScreen && !this.options.forcePseudoFullscreen) {
-				fullScreenApi.requestFullScreen(map._container);
+				fullScreenApi.requestFullScreen(document.getElementsByTagName("BODY")[0]);
 			} else {
 				L.DomUtil.addClass(map._container, 'leaflet-pseudo-fullscreen');
 			}

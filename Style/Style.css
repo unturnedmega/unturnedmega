@@ -5,27 +5,45 @@ body, html {
 }
 
 h1 {
-	font-size: 24px;
-	margin: 12px;
+	font-size: 24px !important;
+	margin: 12px !important;
+	background-image: none !important;
+	background-size: 100% !important;
+    padding: 0 !important;
+    color: #000 !important;
+    line-height: 24px !important;
+    box-shadow: none !important;
 }
 
 p {
-	margin: 12px;
+	margin: 12px !important;
 }
 
-#map {
-	height: 100%;
-	width: calc(100% - 250px);
-	float: left;
+@media (min-width:961px) {
+	#map {
+		height: 100%;
+		width: calc(100% - 260px);
+		margin: 0 260px 0 0; /*top right bottom left*/
+	}	
+	.blocker {
+		z-index: 999!important;
+	}
 }
 
-#sidebar {
-	width: 249px;
-	float: left;
-	border-left: 1px solid #999;
-	height: 100%;
-	background-color: #fcfcfc;
+@media (max-width:960px) {
+	#map {
+		height: 100%;
+		width: 100%;
+		float: left;
+	}
+	.blocker {
+		z-index: 999999!important;
+	}
+}
 
+.sidebarholder {
+	overflow-x:hidden;
+	height:100%;
 }
 
 .mapMarker {
@@ -38,12 +56,17 @@ p {
 
 ul {
 	list-style: none;
-	margin: 5px 20px;
+	margin: 5px 20px !important;
+    border-top: none !important;
+    border-bottom: none !important;
 }
 
 li {
 	margin: 0;
 	list-style-type: none;
+	line-height: 24px !important;
+    border-top: none !important;
+    border-bottom: none !important;
 }
 
 .maplink {
@@ -70,4 +93,170 @@ li {
 	color: #eee;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+#itemFilter {
+	display: none;
+}
+
+#right-menu {
+	width:44px;
+	height: 44px;
+	background-image: url('../Images/filterIcon.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+}
+
+#left-menu {
+	width:44px;
+	height: 44px;
+	background-image: url('../Images/mapIcon.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+}
+.btn-group {
+	margin:12px;
+}
+.btn-group label {
+background-color:#ededed;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;
+border:1px solid #dcdcdc;
+margin:0;
+padding: 6px;
+}
+
+.btn-group input[type=radio] {
+    visibility: hidden;
+	display: none;
+}
+
+.btn-group input[type="radio"]:checked+label{
+	border:1px solid #333;
+} 
+
+.btn-group label:hover {
+	background-color:#dfdfdf;
+}
+
+button {
+background-color:#ededed;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;
+border:1px solid #dcdcdc;
+margin:0;
+padding: 6px;
+}
+
+button:hover {
+	background-color:#dfdfdf;
+}
+
+.tblbtn {
+	float:right;
+	padding:4px;
+	font-size:10px;
+	margin:2px;
+}
+
+table {
+color: #333;
+font-family: Helvetica, Arial, sans-serif;
+width: 100%;
+border-collapse:
+collapse; border-spacing: 0;
+}
+
+td, th {
+border: 1px solid transparent;
+height: 18px;
+padding:6px;
+}
+
+th {
+background-color: rgb(112, 196, 105);
+color: white;
+}
+
+td {
+background: #FAFAFA;
+}
+
+tr:nth-child(even) td { background: #F1F1F1; }
+
+tr:nth-child(odd) td { background: #FEFEFE; }
+
+.rarity_common {
+	color:#1F871F !important;
+}
+
+.rarity_rare {
+	color:#4B64FA !important;
+}
+
+.rarity_epic {
+	color:#964BFA !important;
+}
+
+.rarity_legendary {
+	color:#C832FA !important;
+}
+
+.rarity_mythical {
+	color:#FA3219 !important;
+}
+
+.icon {
+	max-width:18px;
+	max-height:18px;
+	width: auto;
+	height: auto;
+}
+
+.chosen-container {
+	width:226px !important;
+	margin-left:12px;
+}
+
+.chosen-choices {
+	-moz-border-radius:6px !important;
+	-webkit-border-radius:6px !important;
+	border-radius:6px !important;
+	border:1px solid #dcdcdc !important;
+	margin:0 !important;
+	padding: 6px !important;
+	background-image: none !important;
+	box-shadow: none !important;
+}
+
+.search-choice {
+	background-color:#ededed !important;
+	-moz-border-radius:6px !important;
+	-webkit-border-radius:6px !important;
+	border-radius:6px !important;
+	border:1px solid #dcdcdc !important;
+	padding: 2px !important;
+	background-image: none !important;
+    box-shadow: none !important;
+}
+
+.sidr ul li span {
+	float:left;
+	padding: 0 6px 0 6px !important;
+}
+
+.search-choice-close {
+    position: static !important;
+    display: inline !important;
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 1px !important;
+	float:left;
+	margin-top:7px !important;
+	padding: 0 6px 0 6px !important;
+	
 }

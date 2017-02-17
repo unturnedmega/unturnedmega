@@ -3,37 +3,59 @@
 <head>
 	<title>UNTURNEDMEGA</title>
 	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
 	<link href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" rel="stylesheet">
 	<link href="Js/leaflet.fullscreen/Control.FullScreen.css" rel="stylesheet">
+	<link href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.light.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.0/jquery.modal.min.css" />
+	<link rel="stylesheet" href="Js/chosen/chosen.min.css">
 	<link href="Style/Style.css" rel="stylesheet">
 </head>
 <body>
 	<div id="map"></div>
-	<div id="sidebar">
-		<h1>Official Maps</h1>
-		<a class="maplink" data-name="PEI" href="#PEI">PEI</a>
-		<a class="maplink" data-name="Russia" href="#Russia">Russia</a>
-		<a class="maplink" data-name="Washington" href="#Washington">Washington</a>
-		<a class="maplink" data-name="Yukon" href="#Yukon">Yukon</a>
-		<h1>Community Maps</h1>
-		<a class="maplink" data-name="BuzzIsland" href="#BuzzIsland">Buzz Island</a>
-		<a class="maplink" data-name="WildAlaska" href="#WildAlaska">Wild Alaska</a>
-		<h1>About</h1>
-		<p>UNTURNEDMEGA is the result of a weekend project to create maps for unturned with higher detail than anyone have provided before.</p>
-		<p>Request maps or features to be added <a href="https://github.com/unturnedmega/unturnedmega/issues">here</a>!</p>
-		<p>Hosted on <a href="https://pages.github.com">Github Pages</a> with <a href="https://www.cloudflare.com">CloudFlare</a> caching.</p>
+	<div id="sidr-left">
+		<div class="sidebarholder">
+			<h1>Official Maps</h1>
+			<a class="maplink" data-name="PEI" href="#PEI">PEI</a>
+			<a class="maplink" data-name="Russia" href="#Russia">Russia</a>
+			<a class="maplink" data-name="Washington" href="#Washington">Washington</a>
+			<a class="maplink" data-name="Yukon" href="#Yukon">Yukon</a>
+			<h1>Community Maps</h1>
+			<a class="maplink" data-name="BuzzIsland" href="#BuzzIsland">Buzz Island</a>
+			<a class="maplink" data-name="Overgrown3Plus" href="#Overgrown3Plus">Overgrown 3+</a>
+			<a class="maplink" data-name="WildAlaska" href="#WildAlaska">Wild Alaska</a>
+		</div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-	</script> 
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js">
-	</script> 
-	<script src="Js/leaflet-heat.js">
-	</script> 
-	<script src="Js/leaflet.fullscreen/Control.FullScreen.js">
-	</script> 
+	<div id="sidr-right" class="sidebar">
+		<div class="sidebarholder">
+			<h1>Filter Items</h1>
+			<div class="btn-group">
+				<input class="filteroption" id="catfilter" type="radio" name="rad" checked><label for="catfilter" checked>By Category</label>
+				<input class="filteroption" id="spesificfilter" type="radio" name="rad"><label for="spesificfilter">By Individual Item</label>
+			</div>
+			<ul id="itemTables"></ul>
+			<div id="itemFilter">
+			<select id="itemSelect" class="chosen-container" data-placeholder="Choose items to show" multiple="" tabindex="3">
+				<option value=""></option>
+			</select>
+			<p>Disabled items do not appear on the selected map.</p>
+			</div>
+			<h1>About</h1>
+			<p>UNTURNEDMEGA is the result of a weekend project to create maps for unturned with higher detail than anyone have provided before.</p>
+			<p>Request maps or features to be added <a href="https://github.com/unturnedmega/unturnedmega/issues">here</a>!</p>
+			<p>Hosted on <a href="https://pages.github.com">Github Pages</a> with <a href="https://www.cloudflare.com">CloudFlare</a> caching.</p>
+		</div>
+	</div>
+	<div id="modal" style="display:none;"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script> 
+	<script src="Js/chosen/chosen.jquery.min.js"></script> 
+	<script src="Js/leaflet-heat.js"></script> 
+	<script src="Js/leaflet.fullscreen/Control.FullScreen.js"></script>
+	<script src="//cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.0/jquery.modal.min.js"></script>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
