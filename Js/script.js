@@ -341,6 +341,10 @@ function loadMap(mapName, firstTime) {
 				$li = $('<li></li>');
 				$li.append('<label style="float:left;clear: both;"><input type="checkbox" class="option" id="category_'+val.id+'" data-value="'+key+'" checked> '+val.category+'</label><button data-value="'+key+'" class="tblbtn">Table</button>');
 				$("#itemTables").append($li);
+			} else {
+				$li = $('<li></li>');
+				$li.append('<label style="float:left;clear: both;"><input type="checkbox" class="option" id="category_'+val.id+'" data-value="'+key+'" checked> '+val.category+' [missing]</label><button data-value="'+key+'" class="tblbtn">Table</button>');
+				$("#itemTables").append($li);
 			}
 			$.each(val.contains, function(key2, val2) {
 				$.each(val2.contains, function(key3, val3) {
