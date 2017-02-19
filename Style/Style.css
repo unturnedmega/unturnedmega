@@ -15,6 +15,17 @@ h1 {
     box-shadow: none !important;
 }
 
+h2{
+	font-size: 18px !important;
+	margin: 12px !important;
+	background-image: none !important;
+	background-size: 100% !important;
+    padding: 0 !important;
+    color: #000 !important;
+    line-height: 24px !important;
+    box-shadow: none !important;
+}
+
 p {
 	margin: 12px !important;
 }
@@ -259,4 +270,12 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 	margin-top:7px !important;
 	padding: 0 6px 0 6px !important;
 	
+}
+
+.thumb {
+	max-width:460px;
+	max-height:460px;
+	width: auto;
+	height: auto;
+	margin: 12px;
 }
