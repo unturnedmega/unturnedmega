@@ -1,12 +1,168 @@
 var map;
 var mapData;
+var size;
 var scale;
 var offset = 128;
 var leftOpen = false;
 var rightOpen = false;
-var heat;
 var itemData;
 var legacySpawnData;
+var convertY = function (y, height) {return y};
+var mapMarkers = L.layerGroup();
+var airdrops = L.layerGroup();
+var deadzones = L.layerGroup();
+var water = L.layerGroup();
+var fuel = L.layerGroup();
+var vehicles = L.layerGroup();
+var zombieZones = L.layerGroup();
+var heat = L.heatLayer([], {
+	        radius: 15,
+	        minOpacity: 0.4
+	    });
+var isoMap = false;
+
+var noIcon = L.icon({
+	iconUrl: 'Images/none.png',
+	iconSize: [0, 0],
+	iconAnchor: [0, 0],
+	popupAnchor: [0, 0],
+});
+
+var crateIcon = L.icon({
+	iconUrl: 'Images/airdrop.png',
+	iconSize: [18, 18],
+	iconAnchor: [9, 9],
+	popupAnchor: [0, 0],
+});
+
+var waterIcon = L.icon({
+	iconUrl: 'Images/water.png',
+	iconSize: [18, 18],
+	iconAnchor: [9, 9],
+	popupAnchor: [0, 0],
+});
+
+var fuelIcon = L.icon({
+	iconUrl: 'Images/fuel.png',
+	iconSize: [18, 18],
+	iconAnchor: [9, 9],
+	popupAnchor: [0, 0],
+});
+
+var vehicleIcon = L.icon({
+	iconUrl: 'Images/car.png',
+	iconSize: [18, 18],
+	iconAnchor: [9, 9],
+	popupAnchor: [0, 0],
+});
+
+function drawLayers(iso) {
+	mapMarkers.clearLayers();
+	airdrops.clearLayers();
+	deadzones.clearLayers();
+	water.clearLayers();
+	fuel.clearLayers();
+	vehicles.clearLayers();
+	zombieZones.clearLayers();
+	try {
+		heat.setLatLngs([]);
+	}
+	catch(err) {
+		//Everything is fine, carry on
+	}
+	
+	
+	if(iso) {
+		convertY = function (y, height) {
+			if(height==0 || height == null) {
+				return (Math.sin(30/180*Math.PI)*y-443)
+			} else {
+				return (Math.sin(30/180*Math.PI)*y+Math.cos(30/180*Math.PI)*height-443)
+			};
+		}
+		isoMap = true;
+	} else {
+		convertY = function (y, height) {return y};
+		isoMap = false;
+	}
+	
+	$.each(mapData.nodes, function(key, val) {
+		if (val.name) {
+			var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+				icon: noIcon,
+				opacity: 0
+			});
+			marker.bindTooltip(val.name, {
+				permanent: true,
+				className: "mapMarker",
+				offset: [0, 0],
+				direction: "center"
+			});
+			marker.addTo(mapMarkers);
+		}
+		if (val.type == "AIRDROP") {
+			var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+				icon: crateIcon
+			});
+			marker.addTo(airdrops);
+		} else if(val.type == "DEADZONE") {	
+			if(isoMap) {
+				var x0 = val.x-val.radius;
+				var y0 = val.y-val.radius;
+				var x1 = val.x+val.radius;
+				var y1 = val.y+val.radius;
+				var imageUrl = 'Images/deadzone.png',
+					imageBounds = [[convertY(y0, val.height)/scale - offset,x0/scale+ offset], [convertY(y1, val.height)/scale-offset,x1/scale+ offset]];
+				L.imageOverlay(imageUrl, imageBounds, {opacity: 0.2}).addTo(deadzones);
+			} else {
+				L.circle([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], val.radius / scale, {
+				color: '#bf9b30',
+				weight: 1,
+				fillColor: '#ffff00',
+				fillOpacity: 0.2
+				}).addTo(deadzones);
+			}
+		}
+	});
+	
+	$.each(mapData.objects, function(key, val) {
+		if (val.type == "WATER") {
+			var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+				icon: waterIcon,
+				title: val.name
+			});
+			marker.addTo(water);
+		} else if (val.type == "FUEL") {
+			var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+				icon: fuelIcon,
+				title: val.name
+			});
+			marker.addTo(fuel);
+		}
+	});
+
+	$.each(mapData.vehicleSpawnpoints, function(key, val) {
+		var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+			icon: vehicleIcon
+		});
+		marker.addTo(vehicles);
+	});
+
+	
+	$.each(mapData.bounds, function(key, val) {
+		L.rectangle([
+			[convertY(val.corners[3], val.h0-100) / scale - offset, val.corners[2] / scale + offset],
+			[convertY(val.corners[1], val.h0-100) / scale - offset, val.corners[0] / scale + offset]
+		], {
+			color: "#ff0000",
+			weight: .15,
+			fillColor: '#ff0000',
+			fillOpacity: 0.1
+		}).addTo(zombieZones);
+	});
+			 
+	redrawItems();
+}
 
 function showTable(tableId) {
 	$("#modal").html("");
@@ -42,10 +198,10 @@ function filterChange() {
 		$("#itemTables").hide();
 		$("#itemFilter").show();
 	}
-	redrawItems(true);
+	redrawItems();
 }
 
-function redrawItems(update) {
+function redrawItems() {
 	if($("#spesificfilter").is(':checked')) {
 		var filter= []; 
 		$('#itemSelect :selected').each(function(i, selected){ 
@@ -64,20 +220,16 @@ function redrawItems(update) {
 	var h = [];
 	$.each(mapData.itemSpawnpoints, function(key, val) {
 		if($(".option[data-value='"+val.type+"']").is(':checked') && $("#catfilter").is(':checked')) {
-			h.push([val.y / scale - offset, val.x / scale + offset, 1]);
+			h.push([convertY(val.y, val.height) / scale - offset, val.x / scale + offset, 1]);
 		} else {
 			if(mapData.itemTables[val.type].weight && mapData.itemTables[val.type].weight > 0) {
-				h.push([val.y / scale - offset, val.x / scale + offset, mapData.itemTables[val.type].weight]);
+				h.push([convertY(val.y, val.height) / scale - offset, val.x / scale + offset, mapData.itemTables[val.type].weight]);
 			}
 		}
 	});
 	
-	if(update) {
-		if(!map.hasLayer(heat)) heat.addTo(map);
-		heat.setLatLngs(h);
-	} else {
-		return h;
-	}	
+	if(!map.hasLayer(heat)) heat.addTo(map);
+	heat.setLatLngs(h);
 }
 	function sidebarToggle(name, opened) {
 		if ($(window).width() > 960) {
@@ -171,14 +323,17 @@ function loadMap(mapName, firstTime) {
 		mapData = data;
 	    switch (data.size) {
 	        case "SMALL":
+				size = 1024;
 	            scale = (1024 - 64 * 2) / 256;
 	            var maxNativeZoom = 4;
 	            break;
 	        case "MEDIUM":
+				size = 2048;
 	            scale = (2048 - 64 * 2) / 256;
 	            var maxNativeZoom = 5;
 	            break;
 	        default:
+				size = 4096;
 	            scale = (4096 - 64 * 2) / 256;
 	            var maxNativeZoom = 6;
 	    }
@@ -203,122 +358,33 @@ function loadMap(mapName, firstTime) {
 
 	    map.fitBounds(mapBounds);
 
-	    layer = L.tileLayer('Maps/' + mapName + '/{z}/{x}/{y}.jpg', {
+	    topDownLayer = L.tileLayer('Maps/' + mapName + '/{z}/{x}/{y}.jpg', {
 	        minZoom: 0,
 	        maxNativeZoom: maxNativeZoom,
 	        maxZoom: 8,
 	        bounds: mapBounds,
 	        noWrap: true,
 	        tms: false
-	    }).addTo(map);
-
-	    var mapMarkers = L.layerGroup();
-	    var airdrops = L.layerGroup();
-		var deadzones = L.layerGroup();
-		var water = L.layerGroup();
-		var fuel = L.layerGroup();
-		var vehicles = L.layerGroup();
-
-	    var noIcon = L.icon({
-	        iconUrl: 'Images/none.png',
-	        iconSize: [0, 0],
-	        iconAnchor: [0, 0],
-	        popupAnchor: [0, 0],
-	    });
-
-	    var crateIcon = L.icon({
-	        iconUrl: 'Images/airdrop.png',
-	        iconSize: [18, 18],
-	        iconAnchor: [9, 9],
-	        popupAnchor: [0, 0],
 	    });
 		
-		var waterIcon = L.icon({
-	        iconUrl: 'Images/water.png',
-	        iconSize: [18, 18],
-	        iconAnchor: [9, 9],
-	        popupAnchor: [0, 0],
+		topDownLayer.beforeAdd = function (map) {
+			drawLayers(false);
+			return this;
+		};
+		
+		isoLayer = L.tileLayer('Maps/' + mapName + '_Iso/{z}/{x}/{y}.jpg', {
+	        minZoom: 0,
+	        maxNativeZoom: 6,
+	        maxZoom: 8,
+	        bounds: mapBounds,
+	        noWrap: true,
+	        tms: false
 	    });
 		
-		var fuelIcon = L.icon({
-	        iconUrl: 'Images/fuel.png',
-	        iconSize: [18, 18],
-	        iconAnchor: [9, 9],
-	        popupAnchor: [0, 0],
-	    });
-		
-		var vehicleIcon = L.icon({
-	        iconUrl: 'Images/car.png',
-	        iconSize: [18, 18],
-	        iconAnchor: [9, 9],
-	        popupAnchor: [0, 0],
-	    });
-
-	    $.each(data.nodes, function(key, val) {
-	        if (val.name) {
-	            var marker = new L.marker([val.y / scale - offset, val.x / scale + offset], {
-	                icon: noIcon,
-	                opacity: 0
-	            });
-	            marker.bindTooltip(val.name, {
-	                permanent: true,
-	                className: "mapMarker",
-	                offset: [0, 0],
-	                direction: "center"
-	            });
-	            marker.addTo(mapMarkers);
-	        }
-	        if (val.type == "AIRDROP") {
-	            var marker = new L.marker([val.y / scale - offset, val.x / scale + offset], {
-	                icon: crateIcon
-	            });
-	            marker.addTo(airdrops);
-	        } else if(val.type == "DEADZONE") {
-				L.circle([val.y / scale - offset, val.x / scale + offset], val.radius / scale, {
-					color: '#bf9b30',
-					weight: 1,
-					fillColor: '#ffff00',
-					fillOpacity: 0.1
-					}).addTo(deadzones);
-			}
-	    });
-	    mapMarkers.addTo(map);
-		
-		$.each(data.objects, function(key, val) {
-	        if (val.type == "WATER") {
-	            var marker = new L.marker([val.y / scale - offset, val.x / scale + offset], {
-	                icon: waterIcon,
-					title: val.name
-	            });
-	            marker.addTo(water);
-	        } else if (val.type == "FUEL") {
-	            var marker = new L.marker([val.y / scale - offset, val.x / scale + offset], {
-	                icon: fuelIcon,
-					title: val.name
-	            });
-	            marker.addTo(fuel);
-	        }
-	    });
-
-		$.each(data.vehicleSpawnpoints, function(key, val) {
-			var marker = new L.marker([val.y / scale - offset, val.x / scale + offset], {
-				icon: vehicleIcon
-			});
-			marker.addTo(vehicles);
-	    });
-
-	    var zombieZones = L.layerGroup();
-	    $.each(data.bounds, function(key, val) {
-	        L.rectangle([
-	            [val.corners[3] / scale - offset, val.corners[2] / scale + offset],
-	            [val.corners[1] / scale - offset, val.corners[0] / scale + offset]
-	        ], {
-	            color: "#ff0000",
-	            weight: .15,
-				fillColor: '#ff0000',
-				fillOpacity: 0.1
-	        }).addTo(zombieZones);
-	    });
+		isoLayer.beforeAdd = function (map) {
+			drawLayers(true);
+			return this;
+		};
 		
 		$("#itemTables").html("");
 		$(".itemSelection").prop("disabled", true);
@@ -378,25 +444,25 @@ function loadMap(mapName, firstTime) {
 		  $('#itemTables').find('input[type="checkbox"]').prop({
 			checked: true
 		  });
-		  redrawItems(true);
+		  redrawItems();
 		});
 		$("#none").click(function() {
 		  $('#itemTables').find('input[type="checkbox"]').prop({
 			checked: false
 		  });
-		  redrawItems(true);
+		  redrawItems();
 		});
 		
 		$('.option').change(function(e) {
-			redrawItems(true);
+			redrawItems();
 		 });
-		 
-		var h = redrawItems(false);
-		 
-		heat = L.heatLayer(h, {
-	        radius: 15,
-	        minOpacity: 0.4
-	    });		
+		
+		if(isoMap) {
+			isoLayer.addTo(map);			
+		} else {
+			topDownLayer.addTo(map);
+		}
+		
 
 	    var overlayMaps = {
 	        "Places": mapMarkers,        
@@ -409,7 +475,10 @@ function loadMap(mapName, firstTime) {
 			"Zombie Zones": zombieZones
 			
 	    };
-	    L.control.layers({}, overlayMaps).addTo(map);
+		
+		mapMarkers.addTo(map);
+	    L.control.layers({"GPS Map": topDownLayer, "Aerial View": isoLayer}, overlayMaps).addTo(map);
+		
 		
 		var leftmenu = L.control({position: 'bottomleft'});
 		leftmenu.onAdd = function(map){
@@ -428,7 +497,7 @@ function loadMap(mapName, firstTime) {
 		rightmenu.addTo(map);
 		
 		loadSidebars();
-		if(firstTime && hasHeat) setTimeout(function(){redrawItems(true);}, 500);
+		if(firstTime && hasHeat) setTimeout(function(){redrawItems();}, 500);
 
 	});
 	
@@ -450,7 +519,7 @@ $(document).ready(function() {
 				$("#itemSelect").append("<option class='itemSelection' value='"+key+"' disabled>"+val.name+"</option>");
 			});
 			itemData = data;
-			$(".chosen-container").chosen().change(function(){redrawItems(true)});
+			$(".chosen-container").chosen().change(function(){redrawItems()});
 			
 			loadMap(window.location.hash.substr(1), false);
 			$(".filteroption").click(function() {
