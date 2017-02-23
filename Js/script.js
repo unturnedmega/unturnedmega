@@ -374,7 +374,7 @@ function loadMap(mapName, firstTime) {
 		
 		isoLayer = L.tileLayer('Maps/' + mapName + '_Iso/{z}/{x}/{y}.jpg', {
 	        minZoom: 0,
-	        maxNativeZoom: 6,
+	        maxNativeZoom: maxNativeZoom,
 	        maxZoom: 8,
 	        bounds: mapBounds,
 	        noWrap: true,
