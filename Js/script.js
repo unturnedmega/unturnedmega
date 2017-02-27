@@ -341,23 +341,29 @@ function loadMap(mapName, firstTime) {
 		if(typeof map !== 'undefined' && typeof map.remove === 'function') {
 			map.remove();
 		}
-
-	    map = L.map('map', {
-	        crs: L.CRS.Simple,
-			attributionControl: false,
-	        minZoom: 1,
-	        maxZoom: 8,
-			fullscreenControl: true,
-			  fullscreenControlOptions: {
-				position: 'topleft'
-			  }
-	    });
-
+		
 		 if (window.top.location != window.location) {
+			map = L.map('map', {
+				crs: L.CRS.Simple,
+				attributionControl: false,
+				minZoom: 1,
+				maxZoom: 8
+			});
 			map.addControl(L.control.attribution({
 				position: 'bottomright',
 				prefix: '<a href="https://unturnedme.ga" target="_blank">Map data &copy; UNTURNEDMEGA</a>'
 			}));
+		 } else {
+			map = L.map('map', {
+				crs: L.CRS.Simple,
+				attributionControl: false,
+				minZoom: 1,
+				maxZoom: 8,
+				fullscreenControl: true,
+				  fullscreenControlOptions: {
+					position: 'topleft'
+				  }
+			});
 		 }
 
 	    var mapBounds = new L.LatLngBounds(
@@ -530,8 +536,10 @@ if($.inArray( "noLeftMenu", args ) > 0) {
 
 $(document).ready(function() {
 	$.getJSON("Data/Common/legacyTables.json", function(data2) {
+		$("#loadtext").html("Loading item data");
 		legacySpawnData = data2;
 		$.getJSON("Data/Common/items.json", function(data) {
+			$("#loadtext").html("Loading map");
 			$.each(data, function(key, val) {
 				$("#itemSelect").append("<option class='itemSelection' value='"+key+"' disabled>"+val.name+"</option>");
 			});
