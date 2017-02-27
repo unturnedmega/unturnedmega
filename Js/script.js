@@ -353,7 +353,7 @@ function loadMap(mapName, firstTime) {
 			  }
 	    });
 
-		 if (window.top.location.host != "unturnedme.ga") {
+		 if (window.top.location != window.location) {
 			map.addControl(L.control.attribution({
 				position: 'bottomright',
 				prefix: '<a href="https://unturnedme.ga" target="_blank">Map data &copy; UNTURNEDMEGA</a>'
