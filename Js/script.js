@@ -15,6 +15,7 @@ var water = L.layerGroup();
 var fuel = L.layerGroup();
 var vehicles = L.layerGroup();
 var zombieZones = L.layerGroup();
+var megas = L.layerGroup();
 var heat = L.heatLayer([], {
 	        radius: 15,
 	        minOpacity: 0.4
@@ -50,6 +51,13 @@ var fuelIcon = L.icon({
 	popupAnchor: [0, 0],
 });
 
+
+var megaIcon = L.icon({
+	iconUrl: 'Images/skull.png',
+	iconSize: [18, 18],
+	iconAnchor: [9, 9],
+	popupAnchor: [0, 0],
+});
 var vehicleIcon = L.icon({
 	iconUrl: 'Images/car.png',
 	iconSize: [18, 18],
@@ -62,6 +70,7 @@ function drawLayers(iso) {
 	airdrops.clearLayers();
 	deadzones.clearLayers();
 	water.clearLayers();
+	megas.clearLayers();
 	fuel.clearLayers();
 	vehicles.clearLayers();
 	zombieZones.clearLayers();
@@ -106,6 +115,11 @@ function drawLayers(iso) {
 				icon: crateIcon
 			});
 			marker.addTo(airdrops);
+		} else if (val.type == "MEGA") {
+			var marker = new L.marker([convertY(val.y, val.height) / scale - offset, val.x / scale + offset], {
+				icon: megaIcon
+			});
+			marker.addTo(megas);
 		} else if(val.type == "DEADZONE") {	
 			if(isoMap) {
 				var x0 = val.x-val.radius;
@@ -487,7 +501,8 @@ function loadMap(mapName, firstTime) {
 			"Fuel": fuel,
 			"Airdrop Locations": airdrops,
 			"Deadzones": deadzones,
-			"Zombie Zones": zombieZones
+			"Zombie Zones": zombieZones,
+			"Mega Spawnpoints": megas,
 			
 	    };
 		

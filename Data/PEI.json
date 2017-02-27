@@ -15332,6 +15332,26 @@
       "id": 543,
       "cost": 0,
       "height": 32.70886
+    },
+    {
+      "x": -804.631165,
+      "y": 427.653625,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 33.1101837
+    },
+    {
+      "x": -456.6079,
+      "y": 749.0316,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 36.2923126
     }
   ],
   "itemTables": {

@@ -16514,6 +16514,296 @@
       "id": 0,
       "cost": 0,
       "height": 60.8657341
+    },
+    {
+      "x": -1593.30554,
+      "y": 621.8244,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 35.7955
+    },
+    {
+      "x": -1538.62354,
+      "y": 641.21405,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 35.7956963
+    },
+    {
+      "x": -1509.09558,
+      "y": -902.6137,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 43.5577049
+    },
+    {
+      "x": -1485.89661,
+      "y": 656.3599,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 35.4460144
+    },
+    {
+      "x": -1401.7002,
+      "y": 668.413,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 35.7956734
+    },
+    {
+      "x": -1184.03125,
+      "y": 238.999771,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 34.23201
+    },
+    {
+      "x": -1183.73352,
+      "y": 134.45903,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 34.2319946
+    },
+    {
+      "x": -900.9606,
+      "y": 1280.02393,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 42.0025635
+    },
+    {
+      "x": -876.474,
+      "y": 1209.74463,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 42.0025635
+    },
+    {
+      "x": -884.9977,
+      "y": 1345.675,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 42.0025635
+    },
+    {
+      "x": -645.7709,
+      "y": 278.82373,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 32.3826141
+    },
+    {
+      "x": -486.2174,
+      "y": 46.7224121,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 34.19963
+    },
+    {
+      "x": -375.812744,
+      "y": -1256.75586,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 232.710678
+    },
+    {
+      "x": -317.840576,
+      "y": 1065.20142,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 82.0343
+    },
+    {
+      "x": -123.208252,
+      "y": -1367.82117,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 99.1797562
+    },
+    {
+      "x": -90.6773148,
+      "y": 1224.426,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.2834167
+    },
+    {
+      "x": 8.742474,
+      "y": -786.376953,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 31.3191071
+    },
+    {
+      "x": 58.66746,
+      "y": 1208.4989,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.2834167
+    },
+    {
+      "x": 26.393507,
+      "y": 1351.4198,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.28343
+    },
+    {
+      "x": 483.561523,
+      "y": -1779.9729,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 29.7770824
+    },
+    {
+      "x": 446.445343,
+      "y": -203.0275,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 51.3086853
+    },
+    {
+      "x": 609.8532,
+      "y": -1633.831,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 35.73468
+    },
+    {
+      "x": 528.0443,
+      "y": -156.721725,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 51.308548
+    },
+    {
+      "x": 710.848267,
+      "y": -1006.09485,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 54.12913
+    },
+    {
+      "x": 1471.8252,
+      "y": -1642.54883,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 80.02371
+    },
+    {
+      "x": 1462.44019,
+      "y": -1633.61182,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 41.75031
+    },
+    {
+      "x": 1503.4104,
+      "y": -536.4524,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 41.4161453
+    },
+    {
+      "x": 1548.85938,
+      "y": -606.2096,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 40.7040558
+    },
+    {
+      "x": 1640.545,
+      "y": 785.8954,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 28.3293533
     }
   ],
   "itemTables": {
@@ -17657,14 +17947,14 @@
       "contains": [
         {
           "subcategory": "1",
-          "probability": "NaN",
+          "probability": "1",
           "contains": [
             73
           ]
         }
       ],
       "items": {
-        "73": "NaN"
+        "73": "1"
       }
     },
     "12": {

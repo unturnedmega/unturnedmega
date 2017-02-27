@@ -20408,6 +20408,136 @@
       "id": 541,
       "cost": 0,
       "height": 32.17384
+    },
+    {
+      "x": -211.135315,
+      "y": 733.470947,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.0413857
+    },
+    {
+      "x": -54.7752075,
+      "y": 344.364136,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 39.695858
+    },
+    {
+      "x": 279.150879,
+      "y": 395.562622,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.64402
+    },
+    {
+      "x": 442.8346,
+      "y": 404.526733,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.64402
+    },
+    {
+      "x": 482.694244,
+      "y": 828.3991,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 28.35451
+    },
+    {
+      "x": 595.0985,
+      "y": -56.8204727,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.65835
+    },
+    {
+      "x": 603.7357,
+      "y": 623.6333,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.64402
+    },
+    {
+      "x": 573.518555,
+      "y": 665.1404,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.6440239
+    },
+    {
+      "x": 583.716064,
+      "y": 762.4054,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 39.430954
+    },
+    {
+      "x": 688.071533,
+      "y": 504.732666,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.64402
+    },
+    {
+      "x": 643.839844,
+      "y": 684.2983,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.844017
+    },
+    {
+      "x": 696.9669,
+      "y": 645.626343,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 55.844017
+    },
+    {
+      "x": 822.519531,
+      "y": -551.3436,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 32.3578644
     }
   ],
   "itemTables": {

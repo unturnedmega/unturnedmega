@@ -17284,6 +17284,36 @@
       "id": 541,
       "cost": 0,
       "height": 38.40078
+    },
+    {
+      "x": -771.699,
+      "y": 845.290039,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 36.48266
+    },
+    {
+      "x": -694.5553,
+      "y": -280.132629,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.4007835
+    },
+    {
+      "x": -245.743225,
+      "y": 100.187866,
+      "radius": 0.0,
+      "name": null,
+      "type": "MEGA",
+      "id": 0,
+      "cost": 0,
+      "height": 38.40078
     }
   ],
   "itemTables": {
