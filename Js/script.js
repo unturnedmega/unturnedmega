@@ -20,6 +20,7 @@ var heat = L.heatLayer([], {
 	        minOpacity: 0.4
 	    });
 var isoMap = false;
+var args = [];
 
 var noIcon = L.icon({
 	iconUrl: 'Images/none.png',
@@ -352,11 +353,19 @@ function loadMap(mapName, firstTime) {
 			  }
 	    });
 
+		 if (window.top.location.host != "unturnedme.ga") {
+			map.addControl(L.control.attribution({
+				position: 'bottomright',
+				prefix: '<a href="https://unturnedme.ga" target="_blank">Map data &copy; UNTURNEDMEGA</a>'
+			}));
+		 }
+
 	    var mapBounds = new L.LatLngBounds(
 	        map.unproject([0, 8192], 5),
 	        map.unproject([8192, 0], 5));
 
 	    map.fitBounds(mapBounds);
+		map.setZoom(2);
 
 	    topDownLayer = L.tileLayer('Maps/' + mapName + '/{z}/{x}/{y}.jpg', {
 	        minZoom: 0,
@@ -374,7 +383,7 @@ function loadMap(mapName, firstTime) {
 		
 		isoLayer = L.tileLayer('Maps/' + mapName + '_Iso/{z}/{x}/{y}.jpg', {
 	        minZoom: 0,
-	        maxNativeZoom: maxNativeZoom,
+	        maxNativeZoom: 6,
 	        maxZoom: 8,
 	        bounds: mapBounds,
 	        noWrap: true,
@@ -511,6 +520,14 @@ $(".maplink").click(function() {
 	loadMap($(this).data( "name" ), true);
 });
 
+args = window.location.hash.substr(1).split(',');
+if($.inArray( "aerial", args ) > 0) {
+	isoMap = true;
+}
+if($.inArray( "noLeftMenu", args ) > 0) {
+	$( "<style type=\"text/css\">#left-menu { display: none; }</style>").appendTo( "head" );
+}
+
 $(document).ready(function() {
 	$.getJSON("Data/Common/legacyTables.json", function(data2) {
 		legacySpawnData = data2;
@@ -521,7 +538,7 @@ $(document).ready(function() {
 			itemData = data;
 			$(".chosen-container").chosen().change(function(){redrawItems()});
 			
-			loadMap(window.location.hash.substr(1), false);
+			loadMap(args[0], false);
 			$(".filteroption").click(function() {
 				filterChange();
 			});
@@ -536,5 +553,3 @@ $( window ).resize(function() {
 	$("#map").css("width", "100%");
 	loadSidebars();
 });
-
-
