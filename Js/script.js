@@ -22,6 +22,7 @@ var heat = L.heatLayer([], {
 	    });
 var isoMap = false;
 var args = [];
+var maplist;
 
 var noIcon = L.icon({
 	iconUrl: 'Images/none.png',
@@ -321,7 +322,7 @@ function loadMap(mapName, firstTime) {
 	$("#map").css("margin", "0");
 	$("#map").css("width", "100%");
 	
-	if (mapName == "" || /\W/.test(mapName)) mapName = "PEI";
+	if (mapName == "" || !maplist.maps.hasOwnProperty(mapName)) mapName = "PEI";
 	
 	var l = "Click";
 	if(firstTime) {
@@ -387,9 +388,9 @@ function loadMap(mapName, firstTime) {
 	    map.fitBounds(mapBounds);
 		map.setZoom(2);
 
-	    topDownLayer = L.tileLayer('Maps/' + mapName + '/{z}/{x}/{y}.jpg', {
+	    topDownLayer = L.tileLayer(maplist.maps[mapName].tiles, {
 	        minZoom: 0,
-	        maxNativeZoom: maxNativeZoom,
+	        maxNativeZoom: maplist.maps[mapName].max_zoom,
 	        maxZoom: 8,
 	        bounds: mapBounds,
 	        noWrap: true,
@@ -401,9 +402,9 @@ function loadMap(mapName, firstTime) {
 			return this;
 		};
 		
-		isoLayer = L.tileLayer('Maps/' + mapName + '_Iso/{z}/{x}/{y}.jpg', {
+		isoLayer = L.tileLayer(maplist.maps[mapName].tiles_iso, {
 	        minZoom: 0,
-	        maxNativeZoom: 6,
+	        maxNativeZoom: maplist.maps[mapName].max_zoom_iso,
 	        maxZoom: 8,
 	        bounds: mapBounds,
 	        noWrap: true,
@@ -533,15 +534,8 @@ function loadMap(mapName, firstTime) {
 	
 }
 
-$(".maplink").each(function() {
-	$(this).css("background-image", "url('Images/"+$(this).data( "name" )+".jpg')");
-});
-
-$(".maplink").click(function() {
-	loadMap($(this).data( "name" ), true);
-});
-
 args = window.location.hash.substr(1).split(',');
+
 if($.inArray( "aerial", args ) > 0) {
 	isoMap = true;
 }
@@ -550,20 +544,42 @@ if($.inArray( "noLeftMenu", args ) > 0) {
 }
 
 $(document).ready(function() {
-	$.getJSON("Data/Common/legacyTables.json", function(data2) {
-		$("#loadtext").html("Loading item data");
-		legacySpawnData = data2;
-		$.getJSON("Data/Common/items.json", function(data) {
-			$("#loadtext").html("Loading map");
-			$.each(data, function(key, val) {
-				$("#itemSelect").append("<option class='itemSelection' value='"+key+"' disabled>"+val.name+"</option>");
-			});
-			itemData = data;
-			$(".chosen-container").chosen().change(function(){redrawItems()});
-			
-			loadMap(args[0], false);
-			$(".filteroption").click(function() {
-				filterChange();
+	$.getJSON("Data/Common/maps.json", function(data3) {
+		maplist = data3;
+		
+		$.each(maplist.maps, function(key, val) {
+			if(val.visible == 1) {
+				$a = $("<a class='maplink' href='#"+key+"'>"+val.name+"</a>");
+				$a.css("background-image", "url('Images/"+key+".jpg')");
+				$a.click(function() {
+					loadMap(key, true);
+				});
+				if(val.type=="official") {
+					$("#official_maps").append($a);
+				} else if(val.type=="curated") {
+					$("#curated_maps").append($a);
+				} else if(val.type=="community") {
+					$("#community_maps").append($a);
+				}
+			}
+		});
+		
+		$("#loadtext").html("Loading spawn tables");
+		$.getJSON("Data/Common/legacyTables.json", function(data2) {
+			$("#loadtext").html("Loading item data");
+			legacySpawnData = data2;
+			$.getJSON("Data/Common/items.json", function(data) {
+				$("#loadtext").html("Loading map");
+				$.each(data, function(key, val) {
+					$("#itemSelect").append("<option class='itemSelection' value='"+key+"' disabled>"+val.name+"</option>");
+				});
+				itemData = data;
+				$(".chosen-container").chosen().change(function(){redrawItems()});
+				
+				loadMap(args[0], false);
+				$(".filteroption").click(function() {
+					filterChange();
+				});
 			});
 		});
 	});
