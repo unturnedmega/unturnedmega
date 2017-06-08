@@ -3,8 +3,8 @@
 		"PEI": {
 			"name":"PEI",
 			"type":"official",
-			"tiles":"https://tiles.unturnedme.ga/Maps/PEI/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/PEI_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/PEI/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/PEI_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 5,
 			"max_zoom_iso": 5,
 			"visible": 1
@@ -12,8 +12,8 @@
 		"Russia": {
 			"name":"Russia",
 			"type":"official",
-			"tiles":"https://tiles.unturnedme.ga/Maps/Russia/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/Russia_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/Russia/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/Russia_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 6,
 			"max_zoom_iso": 6,
 			"visible": 1
@@ -21,8 +21,8 @@
 		"Washington": {
 			"name":"Washington",
 			"type":"official",
-			"tiles":"https://tiles.unturnedme.ga/Maps/Washington/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/Washington_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/Washington/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/Washington_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 5,
 			"max_zoom_iso": 5,
 			"visible": 1
@@ -30,8 +30,8 @@
 		"Yukon": {
 			"name":"Yukon",
 			"type":"official",
-			"tiles":"https://tiles.unturnedme.ga/Maps/Yukon/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/Yukon_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/Yukon/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/Yukon_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 5,
 			"max_zoom_iso": 5,
 			"visible": 1
@@ -39,8 +39,8 @@
 		"Hawaii": {
 			"name":"Hawaii",
 			"type":"curated",
-			"tiles":"https://tiles.unturnedme.ga/Maps/Hawaii/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/Hawaii_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/Hawaii/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/Hawaii_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 6,
 			"max_zoom_iso": 6,
 			"visible": 1
@@ -48,8 +48,8 @@
 		"BuzzIsland": {
 			"name":"Buzz Island",
 			"type":"community",
-			"tiles":"https://tiles.unturnedme.ga/Maps/BuzzIsland/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/BuzzIsland_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/BuzzIsland/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/BuzzIsland_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 5,
 			"max_zoom_iso": 5,
 			"visible": 1
@@ -57,8 +57,8 @@
 		"Overgrown3Plus": {
 			"name":"Overgrown 3+",
 			"type":"community",
-			"tiles":"https://tiles.unturnedme.ga/Maps/Overgrown3Plus/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/Overgrown3Plus_Iso/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/Overgrown3Plus/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/Overgrown3Plus_Iso/{z}/{x}/{y}.jpg",
 			"max_zoom": 6,
 			"max_zoom_iso": 6,
 			"visible": 1
@@ -66,8 +66,8 @@
 		"PEIv3": {
 			"name":"PEI v3",
 			"type":"community",
-			"tiles":"https://tiles.unturnedme.ga/Maps/PEIv3/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/PEIv3/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/PEIv3/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/PEIv3/{z}/{x}/{y}.jpg",
 			"max_zoom": 6,
 			"max_zoom_iso": 6,
 			"visible": 1
@@ -75,8 +75,8 @@
 		"WildAlaska": {
 			"name":"Wild Alaska",
 			"type":"community",
-			"tiles":"https://tiles.unturnedme.ga/Maps/WildAlaska/{z}/{x}/{y}.jpg",
-			"tiles_iso":"https://tiles.unturnedme.ga/Maps/WildAlaska/{z}/{x}/{y}.jpg",
+			"tiles":"https://maps.unturnedme.ga/WildAlaska/{z}/{x}/{y}.jpg",
+			"tiles_iso":"https://maps.unturnedme.ga/WildAlaska/{z}/{x}/{y}.jpg",
 			"max_zoom": 6,
 			"max_zoom_iso": 6,
 			"visible": 1
